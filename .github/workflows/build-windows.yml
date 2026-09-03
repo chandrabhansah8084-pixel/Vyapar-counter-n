@@ -6,6 +6,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -13,18 +14,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 24
 
       - name: Install packages
         run: npm install
 
       - name: Build Windows installer
-        run: npx electron-builder --win nsis --publish never
+        run:run: npx electron-builder --win nsis --publish never
 
       - name: Upload Setup.exe
         uses: actions/upload-artifact@v4
         with:
           name: Vyapar-Counter-Windows-Setup
           path: dist/*.exe
-          if-no-files-found: error
+          if-no-files-found: erro
